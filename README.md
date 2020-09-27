@@ -1,3 +1,5 @@
+[download link](https://github.com/epicnyanpandi/SpotifyAdMuter/releases/download/v1.0/SpotifyAdMuter.exe)
+
 # SpotifyAdMuter
 lightweight app that mutes the Spotify app on Windows when there are advertisements
 
