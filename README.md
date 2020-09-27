@@ -3,7 +3,7 @@ lightweight app that mutes the Spotify app on Windows when there are advertiseme
 
 
 ### behavior
-- SAM does NOT block ads, it only mutes them. therefore, there will occasionally be stretches of silence.
+- SAM does NOT block ads, it only mutes them. therefore, there will occasionally be stretches of silence between songs.
 - when Spotify starts playing a song or gets paused, SAM will unmute Spotify.
 - when Spotify starts playing an advertisement, SAM will mute Spotify.
 - when you click the green button in the app, SAM will toggle Spotify's mute state. you can use this button to mute songs or listen to ads if you want.
