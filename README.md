@@ -19,7 +19,7 @@ lightweight app that mutes the Spotify app on Windows when there are advertiseme
 
 
 ### inspiration
-mostly [Eric Zhang's EZBlocker](https://github.com/Xeroday/Spotify-Ad-Blocker). i looked through the code and wanted to simplify the process. other sources can be found in the .cs files.
+mostly [Eric Zhang's EZBlocker](https://github.com/Xeroday/Spotify-Ad-Blocker) - i looked through the code and wanted to simplify the process. other sources can be found in the .cs files.
 
 
 ### technical bits and pieces
