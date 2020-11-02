@@ -31,4 +31,4 @@ mostly [Eric Zhang's EZBlocker](https://github.com/Xeroday/Spotify-Ad-Blocker) -
 - Visual Studio 2019
 - `System.Threading.Mutex` to prevent multiple instances from running
 - Windows Core Audio API to control mute state
-- detects Spotify state by checking its window title
+- detects Spotify ad state by checking its window title
