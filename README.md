@@ -1,5 +1,7 @@
 # [download link](https://github.com/epicnyanpandi/SpotifyAdMuter/releases/download/v1.0/SpotifyAdMuter.exe)
 
+\* i realize that Windows Defender flags it. it's not a virus. that being said, i take no responsibility if anything bad happens.
+
 # SpotifyAdMuter
 lightweight app that mutes the Spotify app on Windows when there are advertisements
 
