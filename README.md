@@ -20,7 +20,7 @@ lightweight app that mutes the Spotify app on Windows when there are advertiseme
 - in the future, i want to make SAM minimize to tray so that it doesn't add window clutter.
 
 
-### inspiration
+### inspiration/sources
 mostly [Eric Zhang's EZBlocker](https://github.com/Xeroday/Spotify-Ad-Blocker) - i looked through the code and wanted to simplify the process. other sources can be found in the .cs files.
 
 
@@ -29,6 +29,5 @@ mostly [Eric Zhang's EZBlocker](https://github.com/Xeroday/Spotify-Ad-Blocker) -
 - Windows Forms
 - .NET Framework 4.0
 - Visual Studio 2019
-- `System.Threading.Mutex` to prevent multiple instances from running
 - Windows Core Audio API to control mute state
 - detects Spotify ad state by checking its window title
