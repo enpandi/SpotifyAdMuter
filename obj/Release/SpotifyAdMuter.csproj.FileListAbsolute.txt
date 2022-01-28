@@ -1,9 +1,0 @@
-C:\Users\panda\programming\SpotifyAdMuter\bin\Release\SpotifyAdMuter.exe
-C:\Users\panda\programming\SpotifyAdMuter\bin\Release\SpotifyAdMuter.pdb
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.Form.resources
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.Properties.Resources.resources
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.csproj.GenerateResource.cache
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.csproj.CoreCompileInputs.cache
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.exe
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.pdb
-C:\Users\panda\programming\SpotifyAdMuter\obj\Release\SpotifyAdMuter.csprojAssemblyReference.cache
