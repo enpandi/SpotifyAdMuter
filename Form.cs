@@ -22,12 +22,10 @@ namespace SpotifyAdMuter {
 		}
 		private void Loop_Tick(object sender, EventArgs e) {
 			if (SpotifyProcess == null) {
-//				Console.WriteLine("null process");
 				MakeNewSpotifyProcess();
 			}
 			if (SpotifyProcess != null) {
 				if (SpotifyMuter == null) {
-//					Console.WriteLine("null muter");
 					MakeNewSpotifyMuter();
 				}
 				if (SpotifyMuter != null) {
@@ -81,8 +79,7 @@ namespace SpotifyAdMuter {
 			return false;
 		}
 		private bool SpotifyIsPlayingAd() {
-			return SpotifyWindowName.Equals("Advertisement")
-				|| SpotifyWindowName.Equals("Spotify");
+			return !SpotifyWindowName.Contains(" - ");
 		}
 		private void ToggleMute() {
 			if (SpotifyMuter != null)
