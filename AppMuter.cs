@@ -4,19 +4,20 @@
  * uses the Windows Core Audio API
  */
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace SpotifyAdMuter
 {
     class AppMuter
     {
-        private ISimpleAudioVolume _volumeController;
+        private readonly ISimpleAudioVolume? _volumeController;
 
         public bool IsActive() { return _volumeController != null; }
 
-        public void SetMute(bool mute) { _volumeController.SetMute(mute, Guid.Empty); }
+        public void SetMute(bool mute) { Debug.Assert(_volumeController != null); _volumeController.SetMute(mute, Guid.Empty); }
 
-        public void GetMute(out bool mute) { mute = false; _volumeController.GetMute(out mute); }
+        public void GetMute(out bool mute) { Debug.Assert(_volumeController != null); _volumeController.GetMute(out mute); }
 
         public AppMuter(int pid)
         {
@@ -25,11 +26,10 @@ namespace SpotifyAdMuter
             // lines 69-125 of https://github.com/Xeroday/Spotify-Ad-Blocker/blob/a985319dc6a626e16df7966c22562794c1053229/EZBlocker/EZBlocker/AudioUtils.cs#L69
             // Simon Mourier:
             // https://stackoverflow.com/a/14322736
-            IMMDeviceEnumerator deviceEnumerator = null;
-            IMMDevice speakers = null;
-            IAudioSessionManager2 sessionManager = null;
-            IAudioSessionEnumerator sessionEnumerator = null;
-            int ctlPid = 0;
+            IMMDeviceEnumerator? deviceEnumerator = null;
+            IMMDevice? speakers = null;
+            IAudioSessionManager2? sessionManager = null;
+            IAudioSessionEnumerator? sessionEnumerator = null;
             try
             {
                 // get default device
@@ -48,7 +48,7 @@ namespace SpotifyAdMuter
                 // get volume control
                 for (int i = 0; i < numSessions; i++)
                 {
-                    IAudioSessionControl2 ctl = null;
+                    IAudioSessionControl2? ctl = null;
                     try
                     {
                         sessionEnumerator.GetSession(i, out ctl);
@@ -56,7 +56,7 @@ namespace SpotifyAdMuter
                             continue;
 
                         // get and compare process id
-                        ctl.GetProcessId(out ctlPid);
+                        ctl.GetProcessId(out int ctlPid);
                         if (pid == ctlPid)
                         {
                             _volumeController = ctl as ISimpleAudioVolume;

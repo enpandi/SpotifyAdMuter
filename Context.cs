@@ -5,29 +5,29 @@ namespace SpotifyAdMuter
 {
     public class Context : ApplicationContext
     {
-        private Process? _SpotifyProcess;
-        private AppMuter? SpotifyMuter;
-        private string _SpotifyWindowName = string.Empty;
-        private bool isMuted = false;
-        private NotifyIcon notifyIcon;
-        private readonly System.Windows.Forms.Timer timer;
+        private Process? _spotifyProcess;
+        private AppMuter? _spotifyMuter;
+        private string _spotifyWindowName = string.Empty;
+        private bool _isMuted = false;
+        private readonly NotifyIcon _notifyIcon;
+        private readonly System.Windows.Forms.Timer _timer;
 
         private Process? SpotifyProcess
         {
-            get => _SpotifyProcess;
+            get => _spotifyProcess;
             set
             {
-                _SpotifyProcess = value;
+                _spotifyProcess = value;
                 Debug.WriteLine($"SpotifyProcess.Id = {value?.Id}");
             }
         }
 
         private string SpotifyWindowName
         {
-            get => _SpotifyWindowName;
+            get => _spotifyWindowName;
             set
             {
-                _SpotifyWindowName = value;
+                _spotifyWindowName = value;
                 Debug.WriteLine($"SpotifyWindowName = {value}");
 
             }
@@ -35,7 +35,7 @@ namespace SpotifyAdMuter
 
         public Context()
         {
-            notifyIcon = new NotifyIcon()
+            _notifyIcon = new NotifyIcon()
             {
                 Text = "unmuted",
                 Icon = Resources.UnmutedIcon,
@@ -45,13 +45,13 @@ namespace SpotifyAdMuter
                 },
                 Visible = true
             };
-            notifyIcon.MouseClick += NotifyIcon_MouseClick;
-            timer = new System.Windows.Forms.Timer()
+            _notifyIcon.MouseClick += NotifyIcon_MouseClick;
+            _timer = new System.Windows.Forms.Timer()
             {
                 Interval = 500, // milliseconds
             };
-            timer.Tick += Timer_Tick;
-            timer.Enabled = true;
+            _timer.Tick += Timer_Tick;
+            _timer.Enabled = true;
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -61,10 +61,10 @@ namespace SpotifyAdMuter
                 MakeNewSpotifyProcess();
                 if (SpotifyProcess == null) return;
             }
-            if (SpotifyMuter == null)
+            if (_spotifyMuter == null)
             {
                 MakeNewSpotifyMuter();
-                if (SpotifyMuter == null) return;
+                if (_spotifyMuter == null) return;
             }
             if (SpotifyIsRunning())
             {
@@ -73,7 +73,7 @@ namespace SpotifyAdMuter
             else
             {
                 SpotifyProcess = null;
-                SpotifyMuter = null;
+                _spotifyMuter = null;
             }
         }
 
@@ -98,16 +98,16 @@ namespace SpotifyAdMuter
         private void MakeNewSpotifyMuter()
         {
             Debug.Assert(SpotifyProcess != null);
-            SpotifyMuter = new AppMuter(SpotifyProcess.Id);
-            if (!SpotifyMuter.IsActive())
-                SpotifyMuter = null;
+            _spotifyMuter = new AppMuter(SpotifyProcess.Id);
+            if (!_spotifyMuter.IsActive())
+                _spotifyMuter = null;
             else
-                SpotifyMuter.GetMute(out isMuted);
+                _spotifyMuter.GetMute(out _isMuted);
         }
 
         private void UpdateMuteState()
         {
-            if (SpotifyHasNewTitle() && SpotifyIsPlayingAd() != isMuted)
+            if (SpotifyHasNewTitle() && SpotifyIsPlayingAd() != _isMuted)
                 ToggleMute();
         }
         private bool SpotifyIsRunning()
@@ -133,24 +133,24 @@ namespace SpotifyAdMuter
         }
         private void ToggleMute()
         {
-            if (SpotifyMuter != null)
+            if (_spotifyMuter != null)
             {
-                SpotifyMuter.SetMute(isMuted ^= true);
-                if (isMuted)
+                _spotifyMuter.SetMute(_isMuted ^= true);
+                if (_isMuted)
                 {
-                    notifyIcon.Text = $"muted \"{SpotifyWindowName}\"";
-                    notifyIcon.Icon = Resources.MutedIcon;
+                    _notifyIcon.Text = $"muted \"{SpotifyWindowName}\"";
+                    _notifyIcon.Icon = Resources.MutedIcon;
                 }
                 else
                 {
-                    notifyIcon.Text = $"unmuted \"{SpotifyWindowName}\"";
-                    notifyIcon.Icon = Resources.UnmutedIcon;
+                    _notifyIcon.Text = $"unmuted \"{SpotifyWindowName}\"";
+                    _notifyIcon.Icon = Resources.UnmutedIcon;
                 }
             }
         }
         void Exit(object? sender, EventArgs e)
         {
-            if (isMuted) ToggleMute();
+            if (_spotifyMuter != null) _spotifyMuter.SetMute(false);
             Application.Exit();
         }
     }
